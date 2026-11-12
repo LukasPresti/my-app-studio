@@ -39,7 +39,10 @@ def test_revision_does_not_read_symlinked_private_file(workspace):
     before = live.revision(workspace)
     secret = workspace / "private.json"
     secret.write_text('{"secret": "fixture"}')
-    (workspace / "app/private.json").symlink_to(secret)
+    try:
+        (workspace / "app/private.json").symlink_to(secret)
+    except OSError:
+        pytest.skip("Symlinks not supported in this environment")
     assert live.revision(workspace) == before
 
 
