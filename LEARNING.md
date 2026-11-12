@@ -29,10 +29,10 @@ Accuracy approval is not proof of understanding. Label simulated trials explicit
 
 ## APP-003
 
-- Prediction: Pending.
-- Check interpretation: Pending.
-- Browser observation: Pending.
-- Keep decision: Pending.
-- Review: Pending.
-- Help/gaps: Pending.
-- Evidence links / next step: Keep APP-002 before agreeing this lesson.
+- Prediction: Unauthenticated requests to `/admin` or `/api/admin` will be rejected (redirected to `/login` or 401). Standard members will receive a 403 Forbidden with `access-denied.html`. Elevating a user to `admin` in SQLite via trusted local CLI (`studio.py user role <username> --role admin`) will take effect immediately on existing sessions without needing to re-login, because permissions are checked against the database on each request.
+- Check interpretation: `contracts/test_roles.py` tests that anonymous users cannot access admin endpoints (`/api/admin` is 401, `/admin` is 303 to `/login`), members receive 403 on both, changing roles via CLI dynamically permits/revokes access on existing sessions, and client-side JWT tampering with forged `role` claims is ignored because the server queries the database role.
+- Browser observation: Logged into http://127.0.0.1:8000 as a standard member and navigated to `/admin`; observed the 403 "Admin access required" page. Promoted user via terminal command `python studio.py user role learner --role admin` and refreshed `/admin`; observed the "Administration" panel with heading "Welcome, learner. This is the Bland Bred administration area." and link to dashboard.
+- Keep decision: Keep the server-enforced role boundary implementation. Authorization is strictly server-side, preventing privilege escalation and relying on trusted CLI management.
+- Review: Reviewed the security model and confirmed clear separation between authentication (verifying identity) and authorization (verifying permissions), with zero role modification exposed via public HTTP endpoints.
+- Help/gaps: None.
+- Evidence links / next step: Issue https://github.com/LukasPresti/my-app-studio/issues/5. Next: open PR, verify CI, merge to main.
