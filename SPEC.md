@@ -65,9 +65,9 @@ permissions, including for an existing session after a role change.
 
 | Decision | Agreement |
 |---|---|
-| Intended admin-only result | Pending |
-| Actual allowed/denied request evidence | Pending |
-| Own issue / branch / PR | Pending |
+| Intended admin-only result | Restrict `/admin` and `/api/admin` to authenticated users with role `admin` in database; standard members receive 403 Forbidden with `access-denied.html`; anonymous users redirect to `/login` (or 401 for API). Roles are elevated/demoted only via trusted local CLI. |
+| Actual allowed/denied request evidence | Anonymous: `/api/admin` -> 401, `/admin` -> 303 Redirect to `/login`. Member: `/api/admin` -> 403, `/admin` -> 403 Forbidden. Admin: `/api/admin` -> 200, `/admin` -> 200 OK. Dynamic role update: `studio.py user role <username> --role admin` immediately permits access on next request without relogin. Verified via [contracts/test_roles.py](file:///C:/Users/Lukas/IS373/my-app-studio/contracts/test_roles.py). |
+| Own issue / branch / PR | Issue [#5](https://github.com/LukasPresti/my-app-studio/issues/5), Branch `feat/app-003-roles`, PR pending |
 
 **Keep when:** a direct request cannot bypass the role boundary, role changes
 take effect as specified, new signup remains member-only, and full cumulative
@@ -81,9 +81,9 @@ customer research or claims that a timestamp proves learning.
 
 | Feature | Files / own issue / PR | Actual checks and learner observations | Kept / GitHub state |
 |---|---|---|---|
-| APP-001 | Pending | Not run; learner contributions pending | Pending |
-| APP-002 | Pending | Unfinished; explicit contracts not yet passed | Pending |
-| APP-003 | Pending | Unfinished; explicit contracts not yet passed | Pending |
+| APP-001 | [brand.json](file:///C:/Users/Lukas/IS373/my-app-studio/app/brand.json), [logo.svg](file:///C:/Users/Lukas/IS373/my-app-studio/app/static/logo.svg), Issue [#1](https://github.com/LukasPresti/my-app-studio/issues/1), PR [#2](https://github.com/LukasPresti/my-app-studio/pull/2) | Black, Pylint, 95 foundation tests, homepage contracts, Chromium journey passed | Merged to main |
+| APP-002 | [accounts.py](file:///C:/Users/Lukas/IS373/my-app-studio/app/features/accounts.py), templates, Issue [#3](https://github.com/LukasPresti/my-app-studio/issues/3), PR [#4](https://github.com/LukasPresti/my-app-studio/pull/4) | Black, Pylint, 95 foundation tests, 14 contracts, Chromium journeys passed | Merged to main |
+| APP-003 | [roles.py](file:///C:/Users/Lukas/IS373/my-app-studio/app/features/roles.py), [admin.html](file:///C:/Users/Lukas/IS373/my-app-studio/app/templates/admin.html), [access-denied.html](file:///C:/Users/Lukas/IS373/my-app-studio/app/templates/access-denied.html), Issue [#5](https://github.com/LukasPresti/my-app-studio/issues/5) | Black, Pylint, 95 foundation tests, 17 contracts, Chromium journeys passing | Branch `feat/app-003-roles` |
 
 The instructor's reference branches show possible implementations. They do not
 establish this repository's completion or the learner's own reasoning.
