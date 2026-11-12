@@ -41,9 +41,9 @@ helpers; keep data local. New accounts cannot choose their role.
 
 | Decision | Agreement |
 |---|---|
-| Expected public/private behavior and account flow | Pending |
-| Valid and rejected cases to demonstrate | Pending |
-| Own issue / branch / PR | Pending |
+| Expected public/private behavior and account flow | Public visitor accesses signup and login forms. Submitting signup creates member account; submitting login sets HttpOnly JWT session cookie and redirects to `/dashboard`. Unauthenticated access to `/dashboard` redirects to `/login`; unauthenticated `GET /api/me` returns 401. Logging out invalidates the session in SQLite and clears the cookie. |
+| Valid and rejected cases to demonstrate | Valid signup and login return 201/200; duplicate usernames return 409; passwords under 15 characters return 422; invalid passwords return 401; missing CSRF tokens return 403; role injection at signup is ignored/rejected (new accounts are members). |
+| Own issue / branch / PR | Issue #3 (https://github.com/LukasPresti/my-app-studio/issues/3), Branch `feat/app-002-accounts` |
 
 **Keep when:** the agreed forms/API work; duplicate/invalid signup and wrong
 credentials are rejected; passwords are hashed; authentication uses validated,
