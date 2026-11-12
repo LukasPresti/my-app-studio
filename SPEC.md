@@ -23,10 +23,10 @@ Keep account actions honest about their unfinished state.
 
 | Decision | Agreement |
 |---|---|
-| Visitor and concrete use situation | Pending |
-| Reused IS117 brand, or name / promise / primary archetype | Pending |
-| One visible choice and visitor benefit | Pending |
-| Own issue / branch / PR | Pending |
+| Visitor and concrete use situation | Artisan bread enthusiasts, home cooks, and local community members seeking wholesome, handcrafted sourdough without shortcuts. |
+| Reused IS117 brand, or name / promise / primary archetype | Brand: Bland Bred. Promise: Simple, unpretentious sourdough baked daily with slow fermentation and honest ingredients. Archetype: The Creator. |
+| One visible choice and visitor benefit | Warm earthy palette (#F8F4EE wheat, #C45B28 crust amber, #2D241E ink) and artisan sourdough SVG emblem, conveying authentic craftsmanship and warmth over sterile commercial branding. |
+| Own issue / branch / PR | Issue #1 (https://github.com/LukasPresti/my-app-studio/issues/1), Branch `feat/app-001-homepage` |
 
 **Keep when:** the agreed identity is visible and usable at desktop/narrow widths;
 full foundation + APP-001 checks pass; AI review and the learner's actual check

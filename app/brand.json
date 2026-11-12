@@ -1,16 +1,20 @@
 {
-  "name": "Your Project",
-  "audience": "Not chosen yet",
-  "archetype": "Not chosen yet",
-  "promise": "Not chosen yet",
-  "headline": "A small idea. A real application.",
-  "summary": "This working page is your starting point. Give it a purpose and a brand, then build accounts and permissions one feature at a time.",
-  "voice": ["Not chosen yet"],
-  "design_direction": "Not chosen yet",
+  "name": "Bland Bred",
+  "audience": "Artisan bread enthusiasts, home cooks, and local community members seeking wholesome, handcrafted sourdough without shortcuts.",
+  "archetype": "The Creator",
+  "promise": "Simple, unpretentious sourdough baked daily with slow fermentation and honest ingredients.",
+  "headline": "Simple ingredients. Honest craft.",
+  "summary": "Bland Bred celebrates authentic slow-fermentation baking. Handcrafted daily with four pure ingredients: organic flour, water, sea salt, and wild starter.",
+  "voice": [
+    "straightforward",
+    "warm",
+    "unpretentious"
+  ],
+  "design_direction": "Warm, tactile bakery editorial with toasted wheat tones, clean typography, and a rustic sourdough emblem.",
   "palette": {
-    "ink": "#182C34",
-    "paper": "#F6F5EF",
-    "accent": "#285A50",
+    "ink": "#2D241E",
+    "paper": "#F8F4EE",
+    "accent": "#C45B28",
     "surface": "#FFFFFF"
   }
 }
