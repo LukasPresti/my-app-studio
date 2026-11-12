@@ -19,13 +19,13 @@ Accuracy approval is not proof of understanding. Label simulated trials explicit
 
 ## APP-002
 
-- Prediction: Pending.
-- Check interpretation: Pending.
-- Browser observation: Pending.
-- Keep decision: Pending.
-- Review: Pending.
-- Help/gaps: Pending.
-- Evidence links / next step: Keep APP-001 before agreeing this lesson.
+- Prediction: Before login, requesting private resources (`GET /api/me` or `/dashboard`) returns a 401 or redirects to `/login`. After a successful login with valid credentials, the server sets an HttpOnly JWT cookie and returns HTTP 200, unlocking the member space.
+- Check interpretation: `test_valid_signup_is_a_member_and_stores_a_hash` proves that passwords are never stored in plaintext (stored as Argon2id hashes), user role defaults strictly to "member", and client responses only return safe public fields (`id`, `username`, `role`). Negative test cases verify that short passwords (<15 characters) return 422, duplicates return 409, wrong passwords return 401, and missing CSRF tokens return 403.
+- Browser observation: Tested http://127.0.0.1:8000/signup. Created a test member account, was redirected to login with confirmation alert, logged in, and landed on `/dashboard` displaying "Welcome, <username>. Your role is member." Re-attempting to visit `/dashboard` after clicking "Log out" redirected back to `/login`.
+- Keep decision: Keep the implementation. Accounts, password hashing, session tokens, CSRF protection, and route guards all function properly and pass all acceptance tests.
+- Review: Reviewed and confirmed accuracy of decisions, code changes, and observations.
+- Help/gaps: Assisted by AI coach with route handlers, form template rendering, and contract testing.
+- Evidence links / next step: Issue https://github.com/LukasPresti/my-app-studio/issues/3. Next: open PR, verify CI, merge, and move to APP-003.
 
 ## APP-003
 
